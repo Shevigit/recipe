@@ -6,5 +6,5 @@ const {addRecipe, deleteRecipe, updateRecipe}=require('../controllers/recipeCont
 router.post('/',addRecipe);
 router.delete('/',deleteRecipe);
 router.put('/',updateRecipe);
-
+router.get('/',getAllRecipe);
 module.exports=router;
