@@ -1,3 +1,4 @@
+
 const Recipe=require("../models/Recipe")
 
 exports.addRecipe = async(req,res)=>{
@@ -18,33 +19,3 @@ exports.getAllRecipe = async (req, res) => {
 };
 
 
-exports.deleteRecipe = async (req, res) => {
-  const {_id}  = req.params;
-console.log(_id);
-  try {
-    const deletedRecipe = await Recipe.findOneAndDelete({ _id: _id });
-    if (!deletedRecipe) {
-      return res.status(404).json({ message: 'Recipe not found' });
-    }
-    res.json({ message: 'recipe deleted successfully' });
-  } catch (error) {
-    console.error('Failed to delete recipe:', error);
-    res.status(500).json({ message: 'Failed to delete recipe' });
-  }
-};
-
-exports.getRecipeById = async (req, res) => {
-  const { _id } = req.params;
-  console.log(_id)
-
-  try {
-    const recipe = await Recipe.findOne({ _id });
-    if (!recipe) {
-      return res.status(404).json({ message: 'Recipe not found' });
-    }
-    res.json(recipe);
-  } catch (error) {
-    console.error('Failed to get recipe:', error);
-    res.status(500).json({ message: 'Failed to get recipe' });
-  }
-};
